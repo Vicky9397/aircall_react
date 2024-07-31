@@ -1,0 +1,412 @@
+/* VARIABLES */
+:root {
+    --green: #00b388;
+    --duck: #006c5b;
+    --smoke: #afafa9;
+    --midnight: #101820;
+    --neon: #307fe2;
+    --red: #ff5c39;
+    --orange: #ff854c;
+    --white: #fff;
+    --smoke-lighten-80: #f4f4f4;
+    --cyan: #003b4c;
+    --cyan-dark: #00242d;
+    --code-background: #40464d;
+    --code-font-color: #d9d9d6;
+    --border-radius: 4px;
+    --font-family-color: #4b5054;
+    --font-family-title-color: #000000;
+    --font-size-h1: 42px;
+    --font-size-h2: 32px;
+    --font-size-h3: 20px;
+    --font-size-base: 15px;
+  }
+  
+  @font-face {
+    font-family: 'Fellix';
+    src: url('https://cdn.aircall.io/fonts/Fellix-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Fellix';
+    src: url('https://cdn.aircall.io/fonts/Fellix-Regular.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Fellix';
+    src: url('https://cdn.aircall.io/fonts/Fellix-Medium.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Fellix';
+    src: url('https://cdn.aircall.io/fonts/Fellix-SemiBold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  /* GLOBAL */
+  * {
+    box-sizing: border-box;
+  }
+  
+  *::moz-selection {
+    background: rgba(162, 228, 184, 0.3);
+  }
+  
+  *::selection {
+    background: rgba(162, 228, 184, 0.3);
+  }
+  
+  html,
+  body {
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body {
+    font-family: 'Fellix', Helvetica, Arial, sans-serif;
+    font-size: var(--font-size-base);
+    color: var(--font-family-color);
+    line-height: 1.4;
+  }
+  
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+    color: var(--font-family-title-color);
+  }
+  
+  h1 {
+    font-size: var(--font-size-h1);
+  }
+  
+  h2 {
+    font-size: var(--font-size-h2);
+  }
+  
+  h3 {
+    font-size: var(--font-size-h3);
+  }
+  
+  .d-none {
+    display: none !important;
+  }
+  
+  .d-flex {
+    display: flex !important;
+  }
+  
+  /* HEADER */
+  nav {
+    height: 90px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background-color: var(--white);
+    padding: 10px 2vw;
+    justify-content: space-between;
+    box-shadow: 0 1px 1px var(--smoke-lighten-80);
+    z-index: 10;
+  }
+  
+  nav .nav-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav .nav-content a {
+    margin: 0 1vw;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--font-family-color);
+    transition: color 0.1s ease-in-out;
+  }
+  
+  nav .nav-content a:hover {
+    color: var(--green);
+  }
+  
+  nav .nav-content a#link-aircall {
+    display: flex;
+  }
+  
+  nav .nav-content a#link-aircall img {
+    margin: auto 0;
+    position: relative;
+  }
+  
+  nav .nav-content a#phone-aircall {
+    width: 30px;
+    display: flex;
+    cursor: pointer;
+  }
+  
+  nav .nav-content a#phone-aircall img {
+    width: 30px;
+    margin: auto;
+  }
+  
+  /* PHONE */
+  #phone-container {
+    position: fixed;
+    top: 65px;
+    right: 10px;
+    z-index: 30;
+  }
+  
+  #phone-container .arrow-up {
+    position: absolute;
+    right: 3.3vw;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid var(--smoke);
+  }
+  
+  #phone-container #phone {
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    border: 1px solid var(--smoke);
+    overflow: hidden;
+    box-shadow: 0 5px 10px #10182060;
+  }
+  
+  #phone-container #phone iframe {
+    border-radius: var(--border-radius);
+  }
+  
+  /* CONTENT */
+  .jumbotron {
+    padding: 180px 10vw 0;
+  }
+  
+  .jumbotron h1 {
+    text-align: center;
+    color: var(--font-family-title-color);
+  }
+  
+  .jumbotron p {
+    margin-top: 20px;
+    font-size: var(--font-size-h3);
+    text-align: center;
+  }
+  
+  code {
+    padding: 2px 4px;
+    background: var(--smoke-lighten-80);
+    border-radius: var(--border-radius);
+    font-family: 'Operator', Menlo, DejaVu Sans Mono, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+  
+  pre {
+    font-family: 'Operator', Menlo, DejaVu Sans Mono, Monaco, Consolas, 'Courier New', monospace;
+  }
+  
+  pre.prettyprint {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 16px !important;
+    border-radius: var(--border-radius) !important;
+    background: var(--code-background);
+    color: var(--code-font-color);
+    overflow: hidden;
+  }
+  
+  pre.prettyprint code {
+    background: transparent;
+  }
+  
+  .container {
+    position: relative;
+    padding: 3vw;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .container h2 {
+    margin-top: 40px;
+  }
+  
+  .container h2::before {
+    display: block;
+    height: 1px;
+    width: 100%;
+    margin-bottom: 40px;
+    background: var(--smoke-lighten-80);
+    content: '';
+  }
+  
+  .container a {
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.1s ease-in-out;
+  }
+  
+  .container a:hover {
+    color: var(--duck);
+  }
+  
+  .container .row {
+    display: flex;
+    align-items: stretch;
+    padding: 20px 0;
+  }
+  
+  .container .row:last-child {
+    padding-bottom: 0;
+  }
+  
+  .container .row .left {
+    position: relative;
+    width: 60%;
+    padding-right: 4vw;
+  }
+  
+  .container .row .left p {
+    margin-bottom: 1em;
+  }
+  
+  .container .row .left pre.prettyprint {
+    background-color: var(--code-background) !important;
+    width: auto !important;
+    flex-grow: 1;
+  }
+  
+  .container .row .left .button {
+    margin-bottom: 20px;
+  }
+  
+  .container .row .right {
+    width: 40%;
+  }
+  
+  #installation {
+    padding-top: 40px;
+  }
+  
+  #waiting-events {
+    margin: 40px 0;
+  }
+  
+  #dial-button {
+    margin-top: 40px;
+  }
+  
+  #call-events-log label {
+    position: relative;
+    display: block;
+    margin: 20px 0;
+  }
+  
+  #call-events-log label > span {
+    display: block;
+    background-color: var(--cyan);
+    font-family: 'Operator', Menlo, DejaVu Sans Mono, Monaco, Consolas, 'Courier New', monospace;
+    color: var(--white);
+    padding: 10px 40px 10px 30px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  #call-events-log label > span::after {
+    position: absolute;
+    content: '+';
+    color: var(--white);
+    right: 30px;
+    top: 10px;
+  }
+  
+  #call-events-log pre.prettyprint {
+    display: none;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  #call-events-log input {
+    display: none;
+  }
+  
+  #call-events-log input:checked + label pre.prettyprint {
+    height: auto;
+    display: block;
+  }
+  
+  #call-events-log input:checked + label > span::after {
+    content: '-';
+  }
+  
+  .button {
+    display: block;
+    background-color: var(--green);
+    color: var(--white);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px 20px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s ease-in-out;
+  }
+  
+  .button:hover {
+    background-color: var(--duck);
+  }
+  
+  .button:disabled {
+    background-color: var(--smoke);
+    color: var(--white);
+    cursor: not-allowed;
+  }
+  
+  .alert {
+    margin: 20px auto;
+    padding: 10px 14px;
+    font-size: 0.95em;
+    border-radius: var(--border-radius);
+  }
+  
+  .alert.alert-success {
+    color: var(--green);
+    box-shadow: 0 0 0 1px var(--green);
+  }
+  
+  .alert.alert-danger {
+    color: var(--red);
+    box-shadow: 0 0 0 1px var(--red);
+  }
+  
+  .alert.alert-warning {
+    color: var(--orange);
+    box-shadow: 0 0 0 1px var(--orange);
+  }
+  
+  @media only screen and (max-width: 800px) {
+    .container .row {
+      flex-direction: column;
+    }
+  
+    .container .row .left {
+      width: 100%;
+      padding: 0;
+    }
+  
+    .container .row .right {
+      width: 100%;
+    }
+  }
+  

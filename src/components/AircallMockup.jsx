@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Typography, Box, Container, Stack } from '@mui/material'
 import AircallPhone from 'aircall-everywhere';
 import '../assets/styles/demo.css';
 import '../assets/styles/reset.css';
@@ -123,23 +124,23 @@ function AircallMockup() {
   };
 
   return (
-    <div className="container">
+    <div>
       <div id="phone-container" className={phoneVisible? "": "d-none"}>
         <div className="arrow-up"></div>
         <div id="phone"></div>
       </div>
 
-      <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', position:'sticky' }}>
   <div className="nav-content">
   </div>
 
   <div className="nav-content" style={{ display: 'flex', alignItems: 'center' }}>
-   
     <a id="phone-aircall" className={phoneVisible ? "" : "d-none"} style={{ marginLeft: 'auto' }}>
       <img src={AircallIcon} alt="Aircall Icon" onClick={() => setPhoneVisible(!phoneVisible)} />
     </a>
   </div>
 </nav>
+
 
 
       <main role="main">

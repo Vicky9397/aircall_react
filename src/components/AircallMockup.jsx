@@ -131,7 +131,8 @@ function AircallMockup() {
       </div>
 
       <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', position:'sticky' }}>
-  <div className="nav-content">
+  <div className="nav-content" style={{marginLeft:200}}>
+    <h3 style={{fontSize:"24px"}}>Aircall storage</h3>
   </div>
 
   <div className="nav-content" style={{ display: 'flex', alignItems: 'center' }}>

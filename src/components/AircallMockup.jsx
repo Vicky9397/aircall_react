@@ -4,14 +4,13 @@ import AircallPhone from 'aircall-everywhere';
 import '../assets/styles/demo.css';
 import '../assets/styles/reset.css';
 import AircallIcon from '../assets/images/aircall-icon.svg';
+import AxiosInstance from '../config/AxiosInstance';
 
 function AircallMockup() {
   const [phoneVisible, setPhoneVisible] = useState(false);
   const [phone, setPhone] = useState(null);
-  //const [dialInfo, setDialInfo] = useState(null);
-  //const [isLoggedInInfo, setIsLoggedInInfo] = useState(null);
-  //const [button, setButton] = useState(true)
   const [callEvents, setCallEvents] = useState([]);
+  const [currentCallId, setCurrentCallId] = useState(null);
 
   useEffect(() => {
     if (phone) {
@@ -19,41 +18,35 @@ function AircallMockup() {
         setPhoneVisible(true);
         const message = `Incoming call from ${callInfos.from} to ${callInfos.to} ringing!`;
         addCallLog('incoming_call', callInfos, message);
-        setStatusMessage('#call-events', 'success', message);
       });
 
       phone.on('call_end_ringtone', (callInfos) => {
         const message = `Ringing ended. call was ${callInfos.answer_status}`;
         addCallLog('call_end_ringtone', callInfos, message);
-        setStatusMessage(
-          '#call-events',
-          callInfos.answer_status === 'answered' ? 'success' : 'warning',
-          message
-        );
+        
       });
 
       phone.on('call_ended', (callInfos) => {
         const message = `Call ended. Lasted ${callInfos.duration} seconds`;
         addCallLog('call_ended', callInfos, message);
-        setStatusMessage('#call-events', 'warning', message);
+        
       });
 
       phone.on('comment_saved', (callInfos) => {
         const message = 'Comment about the last call saved';
         addCallLog('comment_saved', callInfos, message);
-        setStatusMessage('#call-events', 'success', message);
+
       });
 
       phone.on('outgoing_call', (callInfos) => {
         const message = `Outgoing call from ${callInfos.from} to ${callInfos.to} ...`;
         addCallLog('outgoing_call', callInfos, message);
-        setStatusMessage('#call-events', 'success', message);
+        setCurrentCallId(callInfos.call_id);
       });
 
       phone.on('outgoing_answered', (callInfos) => {
         const message = 'Outgoing call answered!';
         addCallLog('outgoing_answered', callInfos, message);
-        setStatusMessage('#call-events', 'success', message);
       });
     }
   }, [phone]);
@@ -74,23 +67,27 @@ function AircallMockup() {
     });
     setPhone(newPhone);
   };
+
+  const resumeCall = async () => {
+    try {
+      const response = await AxiosInstance.post('/resume-call', { callId:"2174408294" });
+      return response.data;
+    } catch (error) {
+      console.error('Error resuming call:', error);
+      throw error;
+    }
+  };
+
+  const pauseCall = async () => {
+    try {
+      const response = await AxiosInstance.post('/pause-call', { callId:"2174408294" });
+      return response.data;
+    } catch (error) {
+      console.error('Error pausing call:', error);
+      throw error;
+    }
+  };
   
-
-//   const dialNumber = () => {
-//     phone.send('dial_number', { phone_number: '+33123456789' }, (success, data) => {
-//       setPhoneVisible(true);
-//       setDialInfo({ success, data });
-//     });
-//   };
-
-//   const checkIsLoggedIn = () => {
-//     phone.isLoggedIn((response) => {
-//       setIsLoggedInInfo(response
-//         ? 'User is logged in'
-//         : 'User is logged out')
-//     });
-//   };
-
   const addCallLog = (id, payload, log) => {
     const currentTime = new Date(Date.now());
     const htmlBlock = (
@@ -188,6 +185,14 @@ function AircallMockup() {
               <div id="call-events-log">{callEvents}</div>
               <div className="alert alert-warning" id="call-events">
                 Not in a call
+              </div>
+              <div className='row'>
+                <div className='left'>
+                  <button className='button' onClick={()=>(pauseCall())}>Pause</button>
+                </div>
+                <div className='right'>
+                  <button className='button' onClick={()=>(resumeCall())}>Resume</button>
+                </div>
               </div>
             </div>
             <div className="right">
